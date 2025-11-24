@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Bug API - Thumbnail</title>
+    <meta property="og:title" content="New API Bug WhatsApp Original Version Work In">
+    <meta property="og:description" content="New API Bug WhatsApp Original Version Work In">
+    <meta property="og:image" content="JustinXSatanic.jpg">
+    <meta property="og:url" content="https://dark-angel-api.vercel.app/">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .thumbnail-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .thumbnail-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .thumbnail-overlay h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .thumbnail-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .description {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #25d366;
+        }
+        
+        .description h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #25d366;
+        }
+        
+        .description p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature i {
+            font-size: 24px;
+            color: #25d366;
+            margin-bottom: 10px;
+        }
+        
+        .feature h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .feature p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WhatsApp Bug API</h1>
+            <p>Original Version - Work In Progress</p>
+        </div>
+        
+        <div class="content">
+            <a href="JustinXSatanic.jpg" target="_blank" class="thumbnail-container">
+                <img src="JustinXSatanic.jpg" alt="WhatsApp Bug API" class="thumbnail">
+                <div class="thumbnail-overlay">
+                    <h3>New API Bug WhatsApp</h3>
+                    <p>Original Version Work In</p>
+                </div>
+            </a>
+            
+            <div class="description">
+                <h2>Tentang API Ini</h2>
+                <p>API Bug WhatsApp Original Version adalah Bug WhatsApp Yang sangat Ganas dan Ilegal cocok digunakan kemusuh Atau Mantan.</p>
+                <p>Fitur anti-error membuat API ini sangat handal dan dapat diandalkan untuk berbagai keperluan pengembangan aplikasi yang terintegrasi dengan WhatsApp.</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i>✓</i>
+                    <h3>Original Version</h3>
+                    <p>Versi asli dengan kode sumber terpercaya</p>
+                </div>
+                <div class="feature">
+                    <i>✓</i>
+                    <h3>Work In Progress</h3>
+                    <p>Pengembangan aktif dengan update berkala</p>
+                </div>
+                <div class="feature">
+                    <i>✓</i>
+                    <h3>Anti Error</h3>
+                    <p>Stabil dan minim masalah teknis</p>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <a href="https://dark-angel-api.vercel.app/" class="btn btn-primary">Kunjungi API</a>
+                <a href="JustinXSatanic.jpg" class="btn btn-secondary" target="_blank">Lihat Gambar</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 WhatsApp Bug API. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
